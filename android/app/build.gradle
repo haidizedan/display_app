@@ -10,19 +10,12 @@ if (localPropertiesFile.exists()) {
     }
 }
 
-def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
-if (flutterVersionCode == null) {
-    flutterVersionCode = '1'
-}
-
-def flutterVersionName = localProperties.getProperty('flutter.versionName')
-if (flutterVersionName == null) {
-    flutterVersionName = '1.0'
-}
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode') ?: '1'
+def flutterVersionName = localProperties.getProperty('flutter.versionName') ?: '1.0'
 
 android {
     namespace "com.example.display_fixed"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 33
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -40,8 +33,8 @@ android {
 
     defaultConfig {
         applicationId "com.example.display_fixed"
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
+        minSdkVersion 21
+        targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -57,6 +50,12 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    // ضع أي dependency إضافي هنا إذا لزم الأمر
+}
+
+// لو بتستخدم Firebase ضيف السطر التالي (لو مش بتستخدمه امسحه):
+// apply plugin: 'com.google.gms.google-services'
+
 
 
