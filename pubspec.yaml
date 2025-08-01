@@ -21,7 +21,7 @@ dependencies:
   # Localization
   flutter_localizations:
     sdk: flutter
-  intl: ^0.18.0
+  intl: intl: ^0.20.2
 
   # HTTP requests
   http: ^1.1.0
@@ -61,3 +61,4 @@ flutter:
         - asset: assets/fonts/Cairo-Regular.ttf
         - asset: assets/fonts/Cairo-Bold.ttf
           weight: 700
+
