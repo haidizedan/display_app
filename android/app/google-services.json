@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "936889169936",
+    "project_id": "display-app2",
+    "storage_bucket": "display-app2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:936889169936:android:01e7fdccba5f6b3f01b295",
+        "android_client_info": {
+          "package_name": "com.example.display_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAva7OrwlG2pltGEw-I1ixBDGj835MYX2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
