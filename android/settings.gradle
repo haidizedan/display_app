@@ -1,16 +1,16 @@
 // android/settings.gradle
 
-import java.util.Properties
-
-// 1. اقرا flutter.sdk من local.properties
-def localProps = new Properties()
-file("local.properties").withReader("UTF-8") { localProps.load(it) }
-def flutterSdkPath = localProps.getProperty("flutter.sdk")
-assert flutterSdkPath != null, "flutter.sdk must be defined in local.properties"
-
-// 2. خليه build قابل للتضمين من Flutter's Gradle plugin
 pluginManagement {
+    // أولاً: اقرأ flutter.sdk من local.properties
+    def props = new java.util.Properties()
+    file("local.properties").withReader("UTF-8") { props.load(it) }
+    def flutterSdkPath = props.getProperty("flutter.sdk")
+    assert flutterSdkPath != null, "Please define flutter.sdk in local.properties"
+
+    // ثم ضمّ حزمة Flutter tooling لتوفير البلجن محلياً
     includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
+
+    // وأخيراً ريبو البلجنز
     repositories {
         google()
         mavenCentral()
@@ -18,7 +18,6 @@ pluginManagement {
     }
 }
 
-// 3. كل repositories للتبعيات تبقى من هنا
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
     repositories {
@@ -29,8 +28,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "display_app"
 include(":app")
-
-
 
 
 
