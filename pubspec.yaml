@@ -49,6 +49,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
+  generate: true            # ← هذا السطر المضاف
   uses-material-design: true
 
   assets:
@@ -61,5 +62,6 @@ flutter:
         - asset: assets/fonts/Cairo-Regular.ttf
         - asset: assets/fonts/Cairo-Bold.ttf
           weight: 700
+
 
 
