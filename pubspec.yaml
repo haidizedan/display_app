@@ -52,19 +52,22 @@ flutter:
   generate: true            # ← هذا السطر المضاف
   uses-material-design: true
 
-  assets:
-    - assets/images/
-    - assets/icons/
+  # Temporarily commented out since assets/fonts directories are not present
+  # assets:
+  #   - assets/images/
+  #   - assets/icons/
 
-  fonts:
-    - family: Cairo
-      fonts:
-        - asset: assets/fonts/Cairo-Regular.ttf
-        - asset: assets/fonts/Cairo-Bold.ttf
-          weight: 700
+  # fonts:
+  #   - family: Cairo
+  #     fonts:
+  #       - asset: assets/fonts/Cairo-Regular.ttf
+  #       - asset: assets/fonts/Cairo-Bold.ttf
+  #         weight: 700
 
 dependency_overrides:
   win32: ^5.14.0
+
+
 
 
 
