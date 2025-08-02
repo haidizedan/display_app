@@ -1,14 +1,19 @@
 buildscript {
     ext.kotlin_version = '1.7.10'
+    repositories {
+        google()
+        mavenCentral()
+    }
+
     dependencies {
         classpath 'com.android.tools.build:gradle:7.3.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.google.gms:google-services:4.3.10' // Firebase لو بتستخدمه
+        classpath 'com.google.gms:google-services:4.3.10'
     }
 }
 
 allprojects {
-    // احذف repositories من هنا تمامًا لأن settings.gradle مسؤول عنها
+    // ممنوع تضيف repositories هنا
 }
 
 rootProject.buildDir = '../build'
@@ -20,6 +25,7 @@ subprojects {
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
+
 
 
 
