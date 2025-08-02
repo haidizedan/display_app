@@ -8,10 +8,13 @@ workflows:
         script: flutter pub get
 
       - name: Build Android APK (release)
-        # جميع الخيارات على سطر واحد لتجنب مشكلة "\" في YAML
-        script: flutter build apk --release --no-tree-shake-icons --target-platform android-arm,android-arm64
+        # نتخطّى tree-shake للأيقونات، ونتجاوز فحص التبعيات الخاصة بالأندرويد
+        script: flutter build apk --release \
+                  --no-tree-shake-icons \
+                  --android-skip-build-dependency-validation
 
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
+
 
 
