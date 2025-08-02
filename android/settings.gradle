@@ -1,16 +1,16 @@
 // android/settings.gradle
 
 pluginManagement {
-    // أولاً: اقرأ flutter.sdk من local.properties
+    // اقرأ flutter.sdk من local.properties
     def props = new java.util.Properties()
     file("local.properties").withReader("UTF-8") { props.load(it) }
     def flutterSdkPath = props.getProperty("flutter.sdk")
     assert flutterSdkPath != null, "Please define flutter.sdk in local.properties"
 
-    // ثم ضمّ حزمة Flutter tooling لتوفير البلجن محلياً
+    // أضف Flutter tooling كمشروع مدمج ليُوفّر البلجن محلياً
     includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
 
-    // وأخيراً ريبو البلجنز
+    // الريبو الخاصة ببلجنات Gradle DSL
     repositories {
         google()
         mavenCentral()
@@ -23,11 +23,21 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        // 👇 هنا أضفنا مستودع AAR الخاص بمحرك Flutter
+        maven {
+            name = "FlutterEngineAARs"
+            def props2 = new java.util.Properties()
+            file("local.properties").withReader("UTF-8") { props2.load(it) }
+            def flutterSdkPath2 = props2.getProperty("flutter.sdk")
+            url = uri("$flutterSdkPath2/bin/cache/artifacts/engine/android")
+        }
     }
 }
 
 rootProject.name = "display_app"
 include(":app")
+
+
 
 
 
