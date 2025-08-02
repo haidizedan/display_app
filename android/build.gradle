@@ -1,9 +1,6 @@
-// android/build.gradle
-
 buildscript {
     ext.kotlin_version = '1.7.10'
 
-    // لازم هنا تطلع الباكدجات من Google و MavenCentral
     repositories {
         google()
         mavenCentral()
@@ -12,30 +9,28 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:7.3.0"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        // لو بتستخدم Firebase:
-        classpath "com.google.gms:google-services:4.3.10"
+        classpath "com.google.gms:google-services:4.3.10" // لو بتستخدم Firebase
     }
 }
 
 allprojects {
-    // ولا تحط هنا أي repositories إضافية، لأنك بتفضل الإعدادات من settings.gradle
     repositories {
         google()
         mavenCentral()
     }
 }
 
-// دي مجرد إعدادات مسار بناء Flutter
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
     project.evaluationDependsOn(':app')
 }
 
-// سكربت تنظيف الـ build
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
+
+
 
 
 
