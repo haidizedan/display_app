@@ -1,18 +1,16 @@
-// 1) اقرأ مسار Flutter SDK من local.properties
+// android/settings.gradle
+
+import java.util.Properties
+
+// 1. اقرا flutter.sdk من local.properties
+def localProps = new Properties()
+file("local.properties").withReader("UTF-8") { localProps.load(it) }
+def flutterSdkPath = localProps.getProperty("flutter.sdk")
+assert flutterSdkPath != null, "flutter.sdk must be defined in local.properties"
+
+// 2. خليه build قابل للتضمين من Flutter's Gradle plugin
 pluginManagement {
-    def flutterSdkPath = {
-        def props = new Properties()
-        file("local.properties")
-            .withInputStream { props.load(it) }
-        def sdk = props.getProperty("flutter.sdk")
-        assert sdk != null, "flutter.sdk must be defined in local.properties"
-        return sdk
-    }()
-
-    // 2) تضمّن بلجن Flutter نفسه كمشروعٍ مبنيّ داخلياً
     includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
-
-    // 3) المستودعات للبلجن DSL
     repositories {
         google()
         mavenCentral()
@@ -20,20 +18,13 @@ pluginManagement {
     }
 }
 
-// 4) خلي كل الـ repositories تجي من هنا برضه
+// 3. كل repositories للتبعيات تبقى من هنا
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
     repositories {
         google()
         mavenCentral()
     }
-}
-
-// 5) عرّف البلجنز ونسخ إصداراتها
-plugins {
-    id "com.android.application"         version "7.3.0" apply false
-    id "org.jetbrains.kotlin.android"    version "1.7.10" apply false
-    id "dev.flutter.flutter-gradle-plugin" version "1.0.0" apply false
 }
 
 rootProject.name = "display_app"
