@@ -1,6 +1,6 @@
 workflows:
   android-apk-release:
-    name: Android APK Release
+    name: Build Android APK (release)
     environment:
       flutter: stable
     scripts:
@@ -8,8 +8,10 @@ workflows:
         script: flutter pub get
 
       - name: Build Android APK (release)
-        script: flutter build apk --release
+        # أضفنا الـ flag لتخطي tree‐shake للأيقونات
+        script: flutter build apk --release --no-tree-shake-icons
 
     artifacts:
       # مسار ملف الـAPK بعد البناء
       - build/app/outputs/flutter-apk/app-release.apk
+
