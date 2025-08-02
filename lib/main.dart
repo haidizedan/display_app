@@ -17,7 +17,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   print('Firebase initialized');
-  // تم حذف استدعاء DataService.initializeDefaultTemplates بناءً على طلب المستخدم
   runApp(const MyApp());
 }
 
@@ -83,7 +82,7 @@ class _MyAppState extends State<MyApp> {
           filled: true,
           fillColor: Colors.grey[50],
         ),
-        cardTheme: CardTheme(
+        cardTheme: CardThemeData(  // ← تم التعديل هنا
           elevation: 2,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
@@ -150,7 +149,9 @@ class _AuthWrapperState extends State<AuthWrapper> {
         ),
       );
     }
-    // تمرير setLocale إلى MainScreen
-    return _isLoggedIn ? MainScreen(setLocale: widget.setLocale) : const LoginScreen();
+    return _isLoggedIn
+        ? MainScreen(setLocale: widget.setLocale)
+        : const LoginScreen();
   }
 }
+
