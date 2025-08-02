@@ -1,3 +1,5 @@
+# ملف codemagic.yaml في جذر المشروع
+
 workflows:
   android-apk-release:
     name: Build Android APK (release)
@@ -5,13 +7,23 @@ workflows:
       flutter: stable
     scripts:
       - name: Get Flutter packages
-        script: flutter pub get
+        script: |
+          flutter pub get
+
+      - name: Precache Android artifacts
+        script: |
+          # يحمل AARs الخاصة بمحرك Flutter (armeabi_v7a, arm64_v8a, x86_64)
+          flutter precache --android
 
       - name: Build Release APK
-        # نضع الأمر بكامل خياراته في سطر واحد
-        script: flutter build apk --release --no-tree-shake-icons --android-skip-build-dependency-validation
+        script: |
+          # يتخطى tree-shake للأيقونات ويتجاوز فحص التبعيات
+          flutter build apk --release \
+            --no-tree-shake-icons \
+            --android-skip-build-dependency-validation
 
     artifacts:
+      # المسار إلى ملف الـAPK بعد نجاح البناء
       - build/app/outputs/flutter-apk/app-release.apk
 
 
