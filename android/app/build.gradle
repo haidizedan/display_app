@@ -1,43 +1,45 @@
-apply plugin: "com.android.application"
-apply plugin: "kotlin-android"
-
-def localProperties = new Properties()
-def file = rootProject.file('local.properties')
-if (file.exists()) {
-  file.withReader('UTF-8') {
-    reader -> localProperties.load(reader)
-  }
+plugins {
+    id "com.android.application"
+    id "org.jetbrains.kotlin.android"
+    id "dev.flutter.flutter-gradle-plugin"
 }
-
-def flutterRoot = localProperties.getProperty('flutter.sdk')
-def flutterVersionCode = localProperties.getProperty('flutter.versionCode') ?: '1'
-def flutterVersionName = localProperties.getProperty('flutter.versionName') ?: '1.0'
-
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-  namespace "com.example.display_fixed"
-  compileSdkVersion flutter.compileSdkVersion
-  ndkVersion flutter.ndkVersion
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
-  }
-  kotlinOptions { jvmTarget = '1.8' }
-  defaultConfig {
-    applicationId "com.example.display_fixed"
-    minSdkVersion flutter.minSdkVersion
-    targetSdkVersion flutter.targetSdkVersion
-    versionCode flutterVersionCode.toInteger()
-    versionName flutterVersionName
-  }
-  buildTypes {
-    release { signingConfig signingConfigs.debug }
-  }
+    namespace "com.example.display_fixed"
+    compileSdk = 34
+
+    defaultConfig {
+        applicationId "com.example.display_fixed"
+        minSdk = 21
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0.0"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debug
+        }
+    }
 }
 
-flutter { source '../..' }
-dependencies {}
+flutter {
+    source = "../.."
+}
+
+dependencies {
+    // Add your dependencies if needed
+}
+
 
 
 
