@@ -7,16 +7,22 @@ workflows:
       - name: Get Flutter packages
         script: flutter pub get
 
+      - name: Fix local.properties for CI
+        script: |
+          cat > android/local.properties <<EOF
+          sdk.dir=$ANDROID_HOME
+          flutter.sdk=$FLUTTER_ROOT
+          EOF
+
       - name: Precache Android artifacts
         script: flutter precache --android
 
-      - name: Build Release APKs (split per ABI)
-        # يجمع APK منفصل لكل ABI ويتجاوز أخطاء الأيقونات الثابتة
-        script: flutter build apk --release --no-tree-shake-icons --split-per-abi
+      - name: Build Release APK
+        # نتخطى أي مشكلة بالأيقونات ونقص التبعيات
+        script: flutter build apk --release --no-tree-shake-icons
 
     artifacts:
-      # يلتقط كل ملفات الـAPK الناتجة
-      - build/app/outputs/flutter-apk/*.apk
+      - build/app/outputs/flutter-apk/app-release.apk
 
 
 
