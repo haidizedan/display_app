@@ -63,5 +63,9 @@ flutter:
         - asset: assets/fonts/Cairo-Bold.ttf
           weight: 700
 
+dependency_overrides:
+  win32: ^5.14.0
+
+
 
 
