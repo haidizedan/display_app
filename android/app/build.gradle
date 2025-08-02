@@ -1,3 +1,5 @@
+// android/app/build.gradle
+
 plugins {
     id "com.android.application"
     id "org.jetbrains.kotlin.android"
@@ -6,14 +8,14 @@ plugins {
 
 android {
     namespace "com.example.display_fixed"
-    compileSdkVersion 34
+    compileSdk = 34
 
     defaultConfig {
         applicationId "com.example.display_fixed"
-        minSdkVersion 21
-        targetSdkVersion 34
-        versionCode 1
-        versionName "1.0.0"
+        minSdk = 21
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0.0"
     }
 
     compileOptions {
@@ -33,16 +35,12 @@ android {
 }
 
 flutter {
-    source '../..'
+    source = "../.."
 }
 
 dependencies {
-    // أضف هنا dependencies لو عايز Firebase مثلاً
-    // implementation 'com.google.firebase:firebase-analytics:xx.x.x'
+  // هنا تقدر تضيف Firebase أو غيره
 }
-
-// لو بتستخدم Firebase Services:
-// apply plugin: 'com.google.gms.google-services'
 
 
 
