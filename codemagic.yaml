@@ -16,8 +16,8 @@ workflows:
           flutter.buildMode=release
           EOF
 
-      - name: Precache Android engine artifacts (incl. release)
-        script: flutter precache --android --release
+      - name: Precache Android engine artifacts
+        script: flutter precache --android
 
       - name: Build Release APK (skip icon tree-shake)
         script: flutter build apk --release --no-tree-shake-icons
