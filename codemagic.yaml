@@ -7,14 +7,13 @@ workflows:
       - name: Get Flutter packages
         script: flutter pub get
 
-      - name: Build Android APK (release)
-        # نتخطّى tree-shake للأيقونات، ونتجاوز فحص التبعيات الخاصة بالأندرويد
-        script: flutter build apk --release \
-                  --no-tree-shake-icons \
-                  --android-skip-build-dependency-validation
+      - name: Build Release APK
+        # نضع الأمر بكامل خياراته في سطر واحد
+        script: flutter build apk --release --no-tree-shake-icons --android-skip-build-dependency-validation
 
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
+
 
 
 
