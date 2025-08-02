@@ -8,10 +8,11 @@ workflows:
         script: flutter pub get
 
       - name: Build Android APK (release)
-        # أضفنا الـ flag لتخطي tree‐shake للأيقونات
-        script: flutter build apk --release --no-tree-shake-icons
+        # نبني فقط للمعماريتين arm و arm64، ونتخطى tree-shake للأيقونات
+        script: flutter build apk --release \
+                 --no-tree-shake-icons \
+                 --target-platform android-arm,android-arm64
 
     artifacts:
-      # مسار ملف الـAPK بعد البناء
       - build/app/outputs/flutter-apk/app-release.apk
 
